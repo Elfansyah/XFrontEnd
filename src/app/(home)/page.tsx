@@ -5,8 +5,8 @@ import Login from "./components/login";
 export default function Home() {
   return (
    <div className="bg-white min-h-screen flex justify-center items-center">
-    {/* <Sign_up/> */}
-    <Login/>
+    <Sign_up/>
+    {/* <Login/> */}
     
    </div>
   );

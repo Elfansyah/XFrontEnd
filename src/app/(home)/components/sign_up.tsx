@@ -3,6 +3,8 @@
 import { ErrorMessage, Field, Form, Formik, FormikProps } from "formik";
 import * as yup from "yup";
 import Image from "next/image";
+import React, { useState } from "react";
+import HomePage from "../page";
 
 const signUpSchema = yup.object().shape({
   username: yup.string().required("username is required"),
@@ -19,13 +21,20 @@ interface ISignUp {
   password: string;
 }
 export default function Sign_up() {
+
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
   const initialValues: ISignUp = { username: "", email: "", password: "" };
+  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       <div className="bg-black lg:rounded-xl md:w-max w-screen  px-2 pt-2 py-8 ">
         <div className="flex   gap-5">
           <div className="w-[45%] text-start">
-            <button className="text-white text-2xl flex items-center justify-center rounded-full  hover:bg-opacity-35 hover:bg-gray-500 w-10 h-10 text-center ">
+            <button className="text-white text-2xl flex items-center justify-center rounded-full  hover:bg-opacity-35 hover:bg-gray-500 w-10 h-10 text-center " onClick={handleCloseModal}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"

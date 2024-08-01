@@ -1,10 +1,41 @@
+"use client"
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import Login from './components/login';
+import Sign_up from './components/sign_up';
+
+// const loginButton = ({ isOpen, handleLogin }: { isOpen: boolean, handleLogin: () => void }) => {
+//   return (
+
+//   )
+// }
 
 const HomePage: React.FC = () => {
+  const [showLogin, setShowLogin] = React.useState(false);
+  const [showSignUp, setShowSignUp] = React.useState(false);
+  const [page, setPage] = React.useState('');
+
+  const handleLogin = () => {
+    setShowLogin(!showLogin);
+  };
+
+  const handleSignUp = () => {
+    setShowSignUp(!showSignUp);
+  };
+
+
   return (
     <main>
+      <div className='fixed top-5 sm:left-[450px] '>
+        {
+          page === 'login' && <Login />
+        }
+        {
+          page === 'signup' && <Sign_up />
+        }
+      </div>
       <div className=' sm:ml-10 grid sm:grid-cols-2 grid-cols-1 items-center h-svh '>
         <div className=''>
           <Image src="/twitter.svg" alt='logo twitter' width={500} height={500} className='text-white items-center lg:m-28 sm:m-10' />
@@ -17,14 +48,14 @@ const HomePage: React.FC = () => {
           </div>
           <div>
 
-            <button className='bg-white px-10 py-2 rounded-[20px] text-slate-900 w-[300px] my-2'>Sign in with apple</button>
+            <button className='bg-white px-10 py-2 rounded-[20px] text-slate-900 w-[300px] my-2' >Sign in with apple</button>
           </div>
           <span className='w-[140px] h-[10px] bg-white-500'></span><p>or</p><span className='w-[140px] h-[1px] bg-gray-500'></span>
-          <div className='bg-blue-300 px-10 py-2 rounded-[20px]  w-[300px] my-2 text-center'>Create Account</div>
+          <button className='bg-blue-300 px-10 py-2 rounded-[20px]  w-[300px] my-2 text-center' onClick={() => setPage("signup")}>Create Account</button>
           <p className='text-[10px] w-[300px]'>By Signingup, you agree to the <Link href="https://maps.app.goo.gl/jdGAUXarTbqZYtYZ6" className='text-blue-900'>Term of Service </Link>and, <Link href="https://maps.app.goo.gl/jdGAUXarTbqZYtYZ6" className='text-blue-900'>Privacy Policy</Link>, including <Link href="https://maps.app.goo.gl/jdGAUXarTbqZYtYZ6" className='text-blue-900'>Cookie Use</Link>.</p>
           <p className='mt-[40px] mb-[10px] font-medium'>Already have an account?</p>
           <div>
-            <button className='border-white border-[1px] px-10 py-2 rounded-[20px] text-blue-500 font-medium w-[300px] my-2 '>Sign in</button>
+            <button className='border-white border-[1px] px-10 py-2 rounded-[20px] text-blue-500 font-medium w-[300px] my-2 ' onClick={() => setPage("login")}>Sign in</button>
           </div>
         </div>
       </div>
